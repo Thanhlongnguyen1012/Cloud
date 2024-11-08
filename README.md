@@ -28,7 +28,7 @@
 
 ## Xây dựng các tài nguyên lên cụm Kubernetes
 ### 1. Tạo file yaml
-Viết file `lab1.yaml` để tạo `service` và  `Deployment`.
+Viết file `lab1.yaml` để tạo `Service` và  `Deployment`.
 Trước khi tạo `Deployment` ta kiểm tra cụm:
 
 ![This is an alt text.](https://i.imgur.com/T4vK9Qu.png "This is a sample image.")
@@ -71,7 +71,7 @@ curl http://127.0.0.1:56632
 
 ## Đóng gói ứng dụng và đưa lên `Docker Hub`
 ### 1. Đóng gói container
-Dowload temmplate tại  [antique-cafe](https://www.free-css.com/free-css-templates/page295/antique-cafe).
+Download template tại  [antique-cafe](https://www.free-css.com/free-css-templates/page295/antique-cafe).
 
 Dùng lệnh `cd` đến thư mục chứa template đã giải nén và ở trong ví dụ này ta mở bằng thư mục bằng`visual studio code`. Thực hiện tạo `Dockerfile` và `nginx.conf`cùng cấp.
 ```
@@ -161,7 +161,7 @@ curl http://127.0.0.1:53569
 
 ## Đóng gói ứng dụng và đưa lên `Docker Hub`
 ### 1. Đóng gói web tĩnh thứ 2
-Cách làm tương tự như ở `lab2`. Trang web được sử dụng ở đây được dowload tại [makaan template](https://www.free-css.com/free-css-templates/page295/makaan).
+Cách làm tương tự như ở `lab2`. Trang web được sử dụng ở đây được download tại [makaan template](https://www.free-css.com/free-css-templates/page295/makaan).
 #### Khởi động Docker desktop và Sử dụng lệnh `docker build` để tạo image: 
 ```
 docker build -t static-web2-final .
@@ -188,7 +188,7 @@ curl http://127.0.0.1:80
 ### 2. Chia sẻ ứng dụng lên dockerhub
 #### Gắn `tag` cho ứng dụng bằng lệnh `docker tag`: 
 ```
-docker tag static-web1-final thanhlongnguyen1012/static-web2-final
+docker tag static-web2-final thanhlongnguyen1012/static-web2-final
 ```
 #### Sử dụng lệnh `doker push` để đưa ứng dụng lên `docker hub':
 ```
@@ -199,6 +199,7 @@ docker push thanhlongnguyen1012/static-web2-final
 ![This is an alt text.](https://i.imgur.com/lVVKvOZ.png "This is a sample image.")
 ## Triển khai các tài nguyên lên Kubernetes
 ### 1. Tạo tài nguyên cho web 2 bằng file `yaml`:
+*chú ý nếu đã tạo tài nguyên bằng file `lab2.yaml` thì không tạo bằng file `lab3-1.yaml` để tránh xung đột vì 2 file giống hệt nhau, đều có mục đích là tạo tài nguyên web1 tĩnh* 
 #### Sử dụng file `lab3-2.yaml`câu lệnh sau để tạo `Deployment` và `Service` cho trang web thứ 2: 
 ```
 kubectl apply -f lab3-2.yaml
