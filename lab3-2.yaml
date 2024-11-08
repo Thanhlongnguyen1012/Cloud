@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-web2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: static-web2
+  template:
+    metadata:
+      labels:
+        app: static-web2
+    spec:
+      containers:
+      - name: static-web2
+        image: thanhlongnguyen1012/static-web2-final
+        ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: static-web2-service
+spec:
+  selector:
+    app: static-web2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30002
+  type: NodePort

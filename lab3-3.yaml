@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-proxy-config
+data:
+  nginx.conf: |
+    events { 
+      worker_connections 4096; 
+    }
+    http {
+      server {
+        listen 80;
+        # Chỉ định thư viện gốc của nginx
+        root /usr/share/nginx/html;
+        # Thiết lập chế độ mặc định cho nginx
+        index index.html index.htm;
+
+        # Chuyển path/web1 đến service web1
+
+        location /web1 {
+          rewrite ^/web1(/.*)$ $1 break;
+          proxy_pass http://static-web1-service.default.svc.cluster.local:80/;
+        }
+
+        # Chuyển path/web2 đến service web2
+
+        location /web2 {
+          rewrite ^/web2(/.*)$ $1 break;
+          proxy_pass http://static-web2-service.default.svc.cluster.local:80/;
+        }
+      }
+    }
